@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting…</title>
+</head>
+<body>
+
+<script>
+const allowedIPs = [
+  "78.32.56.138",
+  "111.222.333.444"
+];
+
+fetch("https://api.ipify.org?format=json")
+  .then(res => res.json())
+  .then(data => {
+    if (allowedIPs.includes(data.ip)) {
+      window.location.href = "/internal.html";
+    } else {
+      window.location.href = "/public.html";
+    }
+  })
+  .catch(() => {
+    // fallback if API fails
+    window.location.href = "/public.html";
+  });
+</script>
+
+</body>
+</html>
